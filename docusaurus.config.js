@@ -10,8 +10,8 @@ const config = {
     v4: true,
   },
 
-  url: 'https://docs.commandpanels.net',
-  baseUrl: '/zh',
+  url: 'https://docs.halogly.com',
+  baseUrl: '/commandpanels/',
 
   organizationName: 'halogly',
   projectName: 'docs-commandpanels-v4-zh',

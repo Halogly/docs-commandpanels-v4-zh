@@ -10,7 +10,7 @@ const config = {
     v4: true,
   },
 
-  url: 'https://docs.halogly.com',
+  url: 'https://commandpanels-v4.halogly.com',
   baseUrl: '/',
 
   organizationName: 'halogly',

@@ -11,7 +11,7 @@ const config = {
   },
 
   url: 'https://docs.halogly.com',
-  baseUrl: '/commandpanels/',
+  baseUrl: '/commandpanels-v4/',
 
   organizationName: 'halogly',
   projectName: 'docs-commandpanels-v4-zh',

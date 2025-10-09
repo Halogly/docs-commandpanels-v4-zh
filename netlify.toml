@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/commandpanels-v4/*"
+  to = "/commandpanels-v4/index.html"
+  status = 200

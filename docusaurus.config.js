@@ -67,6 +67,13 @@ const config = {
           autoCollapseCategories: false,
         },
       },
+      scripts: [
+        {
+          src: '/force-dark.js',
+          async: false,
+        },
+      ],
+
       footer: {
         copyright: `
           Copyright © ${new Date().getFullYear()} Halogly - CommandPanels

@@ -40,6 +40,12 @@ const config = {
       }),
     ],
   ],
+  scripts: [
+    {
+      src: "/force-dark.js",
+      async: false,
+    },
+  ],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -76,7 +82,7 @@ const config = {
 
       footer: {
         copyright: `
-          Copyright © ${new Date().getFullYear()} Halogly - CommandPanels
+          Copyright © 2025-${new Date().getFullYear()} Halogly - CommandPanels
           <div style="font-size: 0.9em; opacity: 0.8;">
             本文档为社区翻译版，非官方文档
           </div>

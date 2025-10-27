@@ -336,3 +336,9 @@ require_headdatabase: "請下載 HeadDatabase 插件以使用此功能！"
 - 插件会读取`lang.yml`并使用你翻译的版本。
 - 你可以在CommandPanels官网的工具（tools）页面找到语言文件。
 - 如果语言文件中缺少一些条目，这些条目会回退到默认的内置语言。
+
+:::tip
+
+通过重载插件（执行命令`/pa reload`）可补全缺失的消息条目。
+
+:::

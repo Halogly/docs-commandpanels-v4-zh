@@ -25,9 +25,9 @@ material: '[head] %player_name%'
 | 标签           | 描述                                                              |
 |--------------|-----------------------------------------------------------------|
 | [head]       | 玩家头颅。使用`[head] <玩家名称>`显示对应玩家的头颅纹理，使用`[head] <base64>`显示自定义头颅纹理。 |
-| [nexo]       | 用于Nexo的自定义物品，例如`[nexo] crystal_shard`。                          |
-| [itemsadder] | 用于ItemsAdder的物品，例如`[itemsadder] money:coin`。                    |
-| [hdb]        | Head Database集成。使用Head Database中的头颅编号。                          |
+| [nexo]       | 用于**Nexo**的自定义物品，例如`[nexo] crystal_shard`。                      |
+| [itemsadder] | 用于**ItemsAdder**的物品，例如`[itemsadder] money:coin`。                |
+| [hdb]        | 集成**Head Database**，使用**Head Database**中的头颅编号。                  |
 | [mmo]        | 用于MMOItems，例如`[mmo] SWORD flame_blade`。                         |
 
 ------

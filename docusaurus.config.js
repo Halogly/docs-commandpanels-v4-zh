@@ -28,9 +28,17 @@ const config = {
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
+        sitemap: {
+          lastmod: 'date',
+          changefreq: 'daily',
+          priority: 0.5,
+          ignorePatterns: ['/tags/**'],
+          filename: 'sitemap.xml',
+        },
         docs: {
           sidebarPath: './sidebars.js',
           routeBasePath: '/',
+          showLastUpdateTime: true,
         },
         blog: false,
         pages: false,

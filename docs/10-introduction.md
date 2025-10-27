@@ -7,6 +7,8 @@ title: 介绍
 
 本文档将指导你如何通过YAML配置文件，在Minecraft中创建、定制与管理功能强大的自定义菜单。
 
+-----
+
 ## 核心功能
 
 - 利用游戏内的物品，构建直观的交互式菜单与面板。
@@ -44,25 +46,18 @@ title: 介绍
 
 ## 权限
 
-CommandPanels使用标准权限节点来控制对应功能的访问权限。以下是权限及其默认访问级别的列表：
+CommandPanels通过权限节点来控制对应功能的访问权限。以下是权限列表，你可以使用任何权限插件来管理它们：
 
-`commandpanels.command`：允许访问基础的`/pa`命令。（默认授予：所有人）
-
-`commandpanels.command.help`：允许使用`/pa help`查看帮助。（默认授予：所有人）
-
-`commandpanels.command.version`：允许插件插件的版本信息。（默认授予：所有人）
-
-`commandpanels.command.data`：允许配置面板数据。（默认授予：管理员）
-
-`commandpanels.command.generate`：允许使用面板生成命令。（默认授予：管理员）
-
-`commandpanels.command.open`：允许使用`/pa open`命令打开面板。（默认授予：管理员）
-
-`commandpanels.command.open.other`：允许为其他玩家打开面板。（默认授予：管理员）
-
-`commandpanels.command.reload`：允许重载插件。（默认授予：管理员）
-
-你可以使用任何权限插件来管理它们。
+| 权限                                   | 描述                    | 默认授予 |
+|--------------------------------------|:----------------------|:----:|
+| **commandpanels.command**            | 允许访问基础的`/pa`命令。       | 所有人  |
+| **commandpanels.command.help**       | 允许使用`/pa help`查看帮助。   | 所有人  |
+| **commandpanels.command.version**    | 允许插件插件的版本信息。          | 所有人  |
+| **commandpanels.command.data**       | 允许配置面板数据。             | 管理员  |
+| **commandpanels.command.generate**   | 允许使用面板生成命令。           | 管理员  |
+| **commandpanels.command.open**       | 允许使用`/pa open`命令打开面板。 | 管理员  |
+| **commandpanels.command.open.other** | 允许为其他玩家打开面板。          | 管理员  |
+| **commandpanels.command.reload**     | 允许重载插件。               | 管理员  |
 
 ------
 

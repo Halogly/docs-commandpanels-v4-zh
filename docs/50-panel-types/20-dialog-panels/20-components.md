@@ -115,7 +115,7 @@ end: 100 # 最大值
 
 ### 复选框
 
-在true和false之间切换的开关组件。
+切换开关组件。
 
 ```yaml
 type: 'boolean'

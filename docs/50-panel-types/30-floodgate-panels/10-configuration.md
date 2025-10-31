@@ -44,11 +44,11 @@ type: 'floodgate'
 基岩表单的类型。分为简易式与自定义式。
 
 ```yaml
-floodgate-type: simple # 简易式
+floodgate-type: 'simple' # 简易式
 ```
 
 ```yaml
-floodgate-type: custom # 自定义式
+floodgate-type: 'custom' # 自定义式
 ```
 
 ### 标题
@@ -93,12 +93,19 @@ aliases: [ 'mute','kick','warn' ]
 
 ### 运行命令
 
-当面板打开后要自动执行的一系列命令。
+在不同面板事件中运行命令。有关运行命令的详细信息，请参阅[**命令操作**](../../60-logic-and-commands/20-command-actions.md)页面。
+
+#### 前置命令
+
+面板打开前要执行的命令。
 
 ```yaml
-commands:
-  - '[msg] 已打开面板'
-  - '[session] set player Halogly'
+open:
+  requirements: []
+  commands:
+    - '[msg] 面板已打开'
+    - '[session] set player Halogly'
+  fail: []
 ```
 
 ------

@@ -32,7 +32,7 @@ const config = {
           sidebarPath: './sidebars.js',
           routeBasePath: '/',
           showLastUpdateTime: true,
-          showLastUpdateAuthor: true,
+          // showLastUpdateAuthor: true,
         },
         blog: false,
         pages: false,

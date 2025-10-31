@@ -48,7 +48,7 @@ conditions: "%player_name% $EQUALS Halogly $AND $NOT %player_name% $HASPERM game
 conditions: "$NOT (%player_name% $EQUALS Halogly $AND %player_name% $HASPERM gamemode.creative)"
 ```
 
-使用多个表达式的进阶条件判断：
+使用多个表达式的复杂条件判断：
 
 ```yaml
 conditions: "$NOT (%player_name% $EQUALS Halogly $AND 400 $ATLEAST 500) $AND ($NOT %player_name% $EQUALS Steve $OR %player_name% $HASPERM gamemode.creative)"
@@ -58,7 +58,7 @@ conditions: "$NOT (%player_name% $EQUALS Halogly $AND 400 $ATLEAST 500) $AND ($N
 
 ## 实际使用示例
 
-下面的示例展示了如何利用条件判断为面板中的物品添加逻辑。在此示例中，我们设置了一个物品，它可以让玩家通过支付一定的费用从等级二升级到等级三。系统会根据玩家是否拥有等级三、是否已具备等级二前置条件、以及金额是否充足，来动态显示这四个物品。
+下面的示例展示了如何利用条件判断为面板中的物品添加条件逻辑。在此示例中，我们设置了一个物品，它可以让玩家通过支付一定的费用从等级二升级到等级三。系统会根据玩家是否拥有等级三、是否已具备等级二前置条件、以及金额是否充足，来动态显示这四个物品。
 
 ```yaml
 layout:
@@ -151,7 +151,7 @@ conditions: '%player_name% $EQUALS Halogly'
 conditions: '%player_health% $ATLEAST 10'
 ```
 
-### 权限检查
+### 权限判断
 
 用法：`$HASPERM`
 
@@ -163,10 +163,10 @@ conditions: '%player_name% $HASPERM commandpanels.open'
 
 ------
 
-:::tip
+:::warning
 
 - 条件表达式仅支持**单层**括号，嵌套括号将无法正常解析。
-- 存在语法错误或无效条件时，会在控制台输出错误信息，或始终判定条件不成立。
+- 存在语法错误或无效条件时，会在控制台输出错误信息，或在使用时始终判定条件不成立。
 
 :::
 

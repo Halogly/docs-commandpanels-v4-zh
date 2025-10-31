@@ -86,12 +86,19 @@ aliases: [ 'mute','kick','warn' ]
 
 ### 运行命令
 
-当面板打开后要自动执行的一系列命令。
+在不同面板事件中运行命令。有关运行命令的详细信息，请参阅[**命令操作**](../../60-logic-and-commands/20-command-actions.md)页面。
+
+#### 前置命令
+
+面板打开前要执行的命令。
 
 ```yaml
-commands:
-  - '[msg] 已打开面板'
-  - '[session] set player Halogly'
+open:
+  requirements: []
+  commands:
+    - '[msg] 面板已打开'
+    - '[session] set player Halogly'
+  fail: []
 ```
 
 ### 跳转兼容
@@ -149,4 +156,8 @@ layout:
 
 面板按照数字编号的顺序依次处理并渲染组件。如果多个组件列在相同的数字编号下，插件会从上到下解析它们的显示条件，第一个符合条件的组件将会显示。
 
-请注意：组件的渲染顺序并非由`items`决定，而是由`layout`决定。
+:::warning
+
+组件的渲染顺序并非由`items`决定，而是由`layout`决定。
+
+:::

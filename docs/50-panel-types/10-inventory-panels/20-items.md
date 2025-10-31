@@ -8,7 +8,7 @@
 
 ------
 
-## 材质
+## 材料
 
 定义物品的原材料。
 
@@ -20,21 +20,28 @@ material: 'IRON_INGOT'
 material: '[head] %player_name%'
 ```
 
-### 支持的材质标签
+### 支持的材料标签
 
-| 标签           | 描述                                                              |
-|--------------|-----------------------------------------------------------------|
-| [head]       | 玩家头颅。使用`[head] <玩家名称>`显示对应玩家的头颅纹理，使用`[head] <base64>`显示自定义头颅纹理。 |
-| [nexo]       | 用于**Nexo**的自定义物品，例如`[nexo] crystal_shard`。                      |
-| [itemsadder] | 用于**ItemsAdder**的物品，例如`[itemsadder] money:coin`。                |
-| [hdb]        | 集成**Head Database**，使用**Head Database**中的头颅编号。                  |
-| [mmo]        | 用于MMOItems，例如`[mmo] SWORD flame_blade`。                         |
+| 标签           | 描述                                                            |
+|--------------|---------------------------------------------------------------|
+| [head]       | 玩家头颅。使用`[head] <base64>`显示自定义头颅纹理，使用`[head] <玩家名称>`显示对应玩家的头颅。 |
+| [nexo]       | 用于**Nexo**的自定义物品，例如`[nexo] crystal_shard`。                    |
+| [itemsadder] | 用于**ItemsAdder**的物品，例如`[itemsadder] money:coin`。              |
+| [hdb]        | 集成了**Head Database**，使用**Head Database**中的头颅编号。               |
+| [mmo]        | 用于**MMOItems**的物品，例如`[mmo] SWORD flame_blade`。                |
+
+:::tip
+
+- 推荐用`[head] <base64>`来获取玩家的头颅。
+- 若使用`[head] <玩家名称>`来获取**离线玩家**的头颅，则获取时系统会通过队列从Mojang API获取并缓存纹理。若Mojang请求超时，则会导致纹理获取失败，因此对于离线玩家来说该获取方法可能并不可靠。
+
+:::
 
 ------
 
 ## 物品属性
 
-默认情况下属性是隐藏的，显示需设置为true。
+是否显示属性，默认为`false`。
 
 ```yaml
 attributes: true
@@ -44,7 +51,7 @@ attributes: true
 
 ## 物品提示框
 
-默认情况下提示框是显示的，隐藏需设置为false。
+是否显示提示框，默认为`true`。
 
 ```yaml
 tooltip: false
@@ -54,10 +61,10 @@ tooltip: false
 
 ## 物品提示框样式
 
-分配自定义提示框样式。
+定义自定义提示框的样式。
 
 ```yaml
-tooltip-style: '[样式]'
+tooltip-style: '[样式名称]'
 ```
 
 ------
@@ -84,7 +91,7 @@ stack: 1
 
 ## 魔咒
 
-应用魔咒会使物品获得光效。可以如下面的示例一样在魔咒前面加上命名空间。
+应用魔咒会使物品获得光效。魔咒名称的前面可加上命名空间，如下所示。
 
 ```yaml
 enchantments:
@@ -126,7 +133,7 @@ custom-model-data: '60254'
 
 ## 物品损坏值
 
-设置物品的耐久度。-1表示物品不可破坏。
+设置物品的耐久度。`-1`表示物品不可破坏。
 
 ```yaml
 damage: 10
@@ -168,7 +175,7 @@ armor-trim: '[材料] [图案]'
 potion: 'STRONG_HEALING'
 ```
 
-更改颜色（RGB）：
+修改RGB颜色：
 
 ```yaml
 potion-color: '19,198,10'

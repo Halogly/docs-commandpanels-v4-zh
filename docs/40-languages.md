@@ -354,6 +354,6 @@ require_head_database: "請下載 HeadDatabase 插件才能使用此功能！"
 
 :::tip
 
-通过重载插件（执行命令`/pa reload`）可补全缺失的消息条目。
+要生成新的语言文件，可先将现有`lang.yml`文件进行备份后从目录中移除，通过重载插件（执行命令`/pa reload`）即可。
 
 :::

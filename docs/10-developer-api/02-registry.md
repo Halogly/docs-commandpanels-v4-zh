@@ -1,230 +1,170 @@
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+# 注册表
 
-# 快速上手
+CommandPanels 的注册表允许你在插件启动时注册自定义实现，从而接入该插件。共有四个可用的注册表：
 
-本页面将带你快速了解CommandPanels面板文件的核心结构与运作机制，以及如何创建你的第一个自定义面板。通过`/pa [参数]`使用插件的主要功能。
+| 注册表 | 描述 |
+| --- | --- |
+| **MATERIAL_COMPONENTS** | 创建一个自定义&#x7684;_&#x6750;质标签_，根据标签字符串构建一个`ItemStack`。 |
+| **ITEM_COMPONENTS** | 在`ItemStack`构建完成后，为其应用自定义属性或数据。 |
+| **REQUIREMENT_TAG_RESOLVERS** | 添加一个自定义&#x7684;_&#x9700;求标签_，用于检查条件并可选地消耗资源。 |
+| **COMMAND_TAG_RESOLVERS** | 添加一个自定义&#x7684;_&#x547D;令标签_，当玩家点击面板物品时执行相应逻辑。 |
 
-------
+最好在 `onEnable()` 中注册你的实现，如果不在此处，最好在任何先于玩家打开面板的位置进行注册。
 
-## 生成面板
+```java
+import me.rockyhawk.commandpanels.api.Registry;
 
-你可以使用`/pa generate`命令，直接根据箱子内的物品布局来快速创建一个新面板。
+Registry.MATERIAL_COMPONENTS.insert(
+    new YourMaterialTag()
+);
 
-运行命令后：
+Registry.ITEM_COMPONENTS.insert(
+    new YourItemTag()
+);
 
-- 你会进入**生成模式**。
-- 在生成模式中，**右键你已经摆好了面板布局的箱子**。
-- 就会根据箱子内的的物品布局创建出一个新的面板文件。
+Registry.REQUIREMENT_TAG_RESOLVERS.insert(
+    new YourRequirementTag()
+);
 
-这种方法可以快速为箱子面板创建布局，无需手动编写YAML文件。
-
-------
-
-## 基础面板文件
-
-- 每个面板都由`panels`文件夹中的YAML文件定义。
-
-- 文件名是面板的**唯一标识名**。
-
-- 面板支持三种类型：
-
-    - `inventory`：传统箱子菜单。
-    - `dialog`：Java版玩家特有的对话框界面。
-    - `floodgate`：基岩版专属表单。
-
-每种类型的配置选项都略有不同，但核心结构是类似的。
-
-------
-
-## 主面板属性
-
-- `type`：面板类型（`inventory`、`dialog`或`floodgate`）。
-- `title`：窗口的标题，可以使用占位符。
-- `conditions`：指定打开面板的条件。
-- `command`：打开面板的命令，可选带参数。
-- `commands`：面板打开前要执行的命令。
-- `update-delay`：定义箱子面板的更新频率（以刻为单位，0表示禁用更新）。
-- `rows`：行数（仅箱子面板可用）。
-- `layout`：定义物品在箱子面板中显示的槽位，以及对话框和基岩面板中组件的显示顺序。
-- `items`：定义箱子面板中显示的物品，或对话框和基岩面板的组件。
-
-------
-
-## 示例面板文件
-
-<Tabs>
-<TabItem value="示例箱子面板" label="箱子面板">
-
-结构简单的面板，一个物品在指定槽位中，点击它可以发送消息。
-
-```yaml
-title: '箱子面板模板'
-type: 'inventory'
-
-rows: 1
-
-layout:
-  fill:
-    - 'example_empty_item'
-  4:
-    - 'example_item'
-
-items:
-  example_empty_item:
-    material: 'BLACK_STAINED_GLASS_PANE'
-
-  example_item:
-    material: 'REDSTONE'
-    name: '示例物品'
-    animate: 'frame_1'
-    left-click:
-      commands:
-        - '[msg] 你点了我一下。'
+Registry.COMMAND_TAG_RESOLVERS.insert(
+    new YourCommandTag()
+);
 ```
 
-</TabItem>
-<TabItem value="示例对话框面板" label="对话框面板">
+---
 
-为Java版玩家显示一个自定义对话框面板。
+## MaterialComponent (材质组件)
 
-```yaml
-title: '对话框面板模板'
-type: 'dialog'
+实现 `MaterialComponent`，将自定义的材质标签解析为底层的 `ItemStack`。引擎会对每一个无法识别的材质字符串调用 `isCorrectTag`，并将处理操作委托给第一个匹配的组件。随后，属性会叠加到返回的物品之上。
 
-columns: 1
-has-exit-button: false
-escapable: true
-
-layout:
-  0:
-    - 'welcome_text'
-  1:
-    - 'confirm_button'
-
-items:
-  welcome_text:
-    type: 'text'
-    name: '&6欢迎来到对话框！'
-
-  confirm_button:
-    type: 'button'
-    name: '点击确认'
-    actions:
-      commands:
-        - '[msg] 感谢点击！'
+```java
+public interface MaterialComponent {
+    boolean isCorrectTag(String tag);
+    ItemStack createItem(Context ctx, String itemID, Player player, PanelItem item);
+}
 ```
 
-</TabItem>
-<TabItem value="示例简易式基岩面板" label="简易式基岩面板">
+从 `createItem` 返回 `null` 以表示失败。CommandPanels 会优雅地回退处理。
 
-只能由基岩版玩家打开，一个基于按钮的简易式基岩表单。
+例如，添加一个 `[craftengine]` 材质标签可能看起来像这样：
 
-```yaml
-title: '基岩面板模板'
-type: 'floodgate'
+```java
+public class CraftEngineComponent implements MaterialComponent {
 
-floodgate-type: 'simple'
+    // 定义你的材质标签名称
+    @Override
+    public boolean isCorrectTag(String tag) {
+        return tag.toLowerCase().startsWith("[craftengine]");
+    }
 
-layout:
-  0:
-    - 'example_button'
+    // 在这里创建你的自定义ItemStack
+    @Override
+    public ItemStack createItem(Context ctx, String itemID, Player player, PanelItem item) {
+        var definition = CraftEngineItems.byId(itemID);
 
-items:
-  example_button:
-    name: '点我！'
-    icon:
-      type: 'PATH'
-      texture: 'textures/items/redstone_dust.png'
-    actions:
-      commands:
-        - '[msg] 你好！爱来自水闸门~'
+        if (definition == null) {
+            return null;
+        }
+
+        return definition.buildBukkitItem(player);
+    }
+}
 ```
 
-</TabItem>
-<TabItem value="示例自定义式基岩面板" label="自定义式基岩面板">
+## ItemComponent (物品组件)
 
-只能由基岩版玩家打开，一个用于输入的自定义式基岩表单。
+实现 `ItemComponent`，向已经构建好的 `ItemStack` 应用附加数据。这是为了在每个面板的 `ItemStack` 构造完成之后修改物品。
 
-```yaml
-title: '基岩面板模板'
-type: 'floodgate'
-
-floodgate-type: 'custom'
-
-layout:
-  0:
-    - 'inputexample'
-  1:
-    - 'sliderexample'
-
-items:
-  inputexample:
-    type: 'input'
-    name: '下方的文本框'
-    placeholder: '在这里输入'
-    default: ''
-    actions:
-      commands:
-        - '[msg] 你说了：%commandpanels_session_inputexample%'
-
-  sliderexample:
-    type: 'slider'
-    name: '滑动滑块'
-    min: 1
-    max: 10
-    step: 1
-    default: 5
-    actions:
-      commands:
-        - '[msg] 你选择了：%commandpanels_session_sliderexample%'
+```java
+public interface ItemComponent {
+    ItemStack apply(Context ctx, ItemStack itemStack, Player player, PanelItem item);
+}
 ```
 
-</TabItem>
-</Tabs>
+从 `apply` 返回修改后的 `ItemStack`。返回的 `ItemStack` 会替换构建流程中当前这个物品。若不想做任何更改，只需原样返回 `ItemStack` 即可。
 
-## 操作与条件
+例如，下面的示例会在 `custom-model-data` 值等于`'five'` 时将物品堆叠数量设置为 5：
 
-CommandPanels使用功能强大且灵活的**点击操作**系统，该系统适用于*所有面板类型*。理解操作和条件的原理是构建交互式和动态化菜单的关键。有关这些功能的详细说明，请参阅相关文档页面。
+```java
+public class CustomModelDataComponent implements ItemComponent {
 
-------
+    @Override
+    public ItemStack apply(Context ctx, ItemStack itemStack, Player player, PanelItem item) {
+        if(!item.customModelData().equals("five")) return itemStack;
 
-### 点击操作
+        itemStack.setAmount(5);
 
-当玩家与组件交互时（例如点击按钮或物品），会使用点击操作。操作支持：
+        return itemStack;
+    }
+}
+```
 
-- **需求标签**：可选，命令必须符合相应的条件才能运行。
-- **命令标签**：要运行的命令，例如发送消息、执行服务器命令或是打开其他面板。
+---
 
-通过以上即可实现**条件执行逻辑**。例如，玩家不满足条件时发送一条消息；满足条件，则打开另一个面板。
+## RequirementTagResolver (需求标签解析器)
 
-------
+实现 `RequirementTagResolver` 以添加自定义的需求标签。引擎会首先调用 `check`。如果它返回 `false`，则执行 `fail` 命令列表，而不是 `commands`。如果 `check` 返回 `true`，则会调用 `execute` 来消耗资源 (例如扣除货币)，然后再执行 `commands`。
 
-### 条件
+如果你不希望对玩家进行任何扣除的操作，`execute` 中的代码可以留空，因为有些需求标签可能只做检查而不进行实际扣除。
 
-**条件**控制界面元素的可见性和行为。主要应用于以下场景：
+```java
+public interface RequirementTagResolver {
+    boolean isCorrectTag(String tag);
+    boolean check(Context ctx, Panel panel, Player player, String raw, String args);
+    void execute(Context ctx, Panel panel, Player player, String raw, String args);
+}
+```
 
-- **面板层面**：判定玩家是否拥有打开面板的权限。
-- **组件层面**：控制指定物品或按钮是否显示。
+`args` 字符串是标签之后的所有内容，其中的占位符已经被解析。`raw` 字符串与之相同，但不解析占位符。如果你执行的操作需要占位符保持未解析状态，则需要使用 `raw`。
 
-条件包括逻辑、占位符比较、权限、世界检测等多种判定模式。通过这些动态条件，你可以根据玩家身份、所处世界或服务器状态来自定义面板呈现的内容。
+下面是一个简单的示例，用于确认玩家是否拥有特定权限：
 
-------
+```java
+public class PermissionTag implements RequirementTagResolver {
 
-### 总结
+    @Override
+    public boolean isCorrectTag(String tag) {
+        return tag.equalsIgnoreCase("[permission]");
+    }
 
-| 功能       | 目的               | 使用场景      |
-|----------|------------------|-----------|
-| **命令标签** | 执行不同操作的特殊命令。     | 命令操作内部    |
-| **需求标签** | 可选，命令必须符合需求才能运行。 | 命令操作内部    |
-| **条件**   | 控制组件的逻辑和面板的可见性。  | 所有面板组件和物品 |
+    @Override
+    public boolean check(Context ctx, Panel panel, Player player, String raw, String args) {
+        return player.hasPermission(args);
+    }
 
-------
+    @Override
+    public void execute(Context ctx, Panel panel, Player player, String raw, String args) {
+        // 无需从玩家那里扣除任何东西，留空
+    }
+}
+```
 
-## 提示
+## CommandTagResolver（命令标签解析器）
 
-- 善用占位符，让面板内容随条件变化。
-- 将物品定义与槽位布局分离，便于维护。
-- 利用逻辑条件，为不同玩家或场景定制交互。
-- 使用动画帧，为操作提供丰富的视觉响应。
-- 这应该能助你快速创建你的第一个面板！
+实现 `CommandTagResolver` 以处理自定义的命令标签。当玩家与面板物品交互，该物品的命令列表中含有你的标签时，会调用 `handle`。
+
+```java
+public interface CommandTagResolver {
+    boolean isCorrectTag(String tag);
+    void handle(Context ctx, Panel panel, Player player, String raw, String command);
+}
+```
+
+`command` 字符串是标签之后的所有内容，其中的占位符已经被解析。`raw` 字符串与之相同，但不解析占位符。如果你执行的操作需要占位符保持未解析状态，则需要使用 `raw`。
+
+下面的示例会向服务器广播一条消息：
+
+```java
+public class BroadcastTag implements CommandTagResolver {
+
+    @Override
+    public boolean isCorrectTag(String tag) {
+        return tag.startsWith("[broadcast]");
+    }
+
+    @Override
+    public void handle(Context ctx, Panel panel, Player player, String raw, String command) {
+        Bukkit.broadcastMessage(command);
+    }
+}
+```

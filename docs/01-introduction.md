@@ -52,12 +52,12 @@ CommandPanels 通过权限节点来控制对应功能的访问权限。以下是
 
 | 权限                                   | 描述                    | 默认授予 |
 | ------------------------------------ | :-------------------- | :--: |
-| **commandpanels.command**            | 允许访问基础的`/pa`命令。       |  所有人 |
-| **commandpanels.command.help**       | 允许使用`/pa help`查看帮助。   |  所有人 |
+| **commandpanels.command**            | 允许访问基础的 `/pa` 命令。       |  所有人 |
+| **commandpanels.command.help**       | 允许使用 `/pa help` 查看帮助。   |  所有人 |
 | **commandpanels.command.version**    | 允许插件插件的版本信息。          |  所有人 |
 | **commandpanels.command.data**       | 允许配置面板数据。             |  管理员 |
 | **commandpanels.command.generate**   | 允许使用面板生成命令。           |  管理员 |
-| **commandpanels.command.open**       | 允许使用`/pa open`命令打开面板。 |  管理员 |
+| **commandpanels.command.open**       | 允许使用 `/pa open` 命令打开面板。 |  管理员 |
 | **commandpanels.command.open.other** | 允许为其他玩家打开面板。          |  管理员 |
 | **commandpanels.command.reload**     | 允许重载插件。               |  管理员 |
 

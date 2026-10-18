@@ -3,24 +3,24 @@ slug: /
 title: 介绍
 ---
 
-# 欢迎使用CommandPanels
+# 欢迎使用 CommandPanels
 
-本文档将指导你如何通过YAML配置文件，在Minecraft中创建、定制与管理功能强大的自定义菜单。
+本文档将指导你如何通过 YAML 配置文件，在 Minecraft 中创建、定制与管理功能强大的自定义菜单。
 
------
+---
 
 ## 核心功能
 
 - 利用游戏内的物品，构建直观的交互式菜单与面板。
 - 为箱子面板添加流畅的动画效果，提升视觉体验。
 - 通过基岩版专属表单，为基岩版玩家提供无缝的界面支持。
-- 使用Java版原生对话框，创建简洁的菜单界面。
+- 使用 Java 版原生对话框，创建简洁的菜单界面。
 - 自由绑定命令、动画、条件逻辑与权限节点。
 - 构建支持占位符与动态数据的复杂界面。
 
-无论你是服务器管理员还是插件开发者，本文档都将帮助你深度掌握CommandPanels，充分发挥其潜能。
+无论你是服务器管理员还是插件开发者，本文档都将帮助你深度掌握 CommandPanels，充分发挥其潜能。
 
-------
+---
 
 ## 目录
 
@@ -30,42 +30,44 @@ title: 介绍
 - 命令和需求：掌握命令标签和自定义逻辑以实现交互性。
 - 占位符和数据：使用玩家数据、条件和内置变量来动态地自定义行为。
 
-------
+---
 
 ## 前提
 
 在开始之前，请确保你准备了：
 
-- 一个运行的Paper端Minecraft服务器或其兼容的分支。
+- 一个运行的 Paper 端 Minecraft 服务器或其兼容的分支。
 
-- 服务器安装了CommandPanels插件。
-- 可选，但如果需要使用到占位符，推荐装上PlaceholderAPI。
-- 一杯咖啡（或是其他你喜欢的饮料）
+- 服务器安装了 CommandPanels 插件。
 
-------
+- 可选，但如果需要使用到占位符，推荐装上 PlaceholderAPI。
+
+- 一杯咖啡 (或是其他你喜欢的饮料)
+
+---
 
 ## 权限
 
-CommandPanels通过权限节点来控制对应功能的访问权限。以下是权限列表，你可以使用任何权限插件来管理它们：
+CommandPanels 通过权限节点来控制对应功能的访问权限。以下是权限列表，你可以使用任何权限插件来管理它们：
 
 | 权限                                   | 描述                    | 默认授予 |
-|--------------------------------------|:----------------------|:----:|
-| **commandpanels.command**            | 允许访问基础的`/pa`命令。       | 所有人  |
-| **commandpanels.command.help**       | 允许使用`/pa help`查看帮助。   | 所有人  |
-| **commandpanels.command.version**    | 允许插件插件的版本信息。          | 所有人  |
-| **commandpanels.command.data**       | 允许配置面板数据。             | 管理员  |
-| **commandpanels.command.generate**   | 允许使用面板生成命令。           | 管理员  |
-| **commandpanels.command.open**       | 允许使用`/pa open`命令打开面板。 | 管理员  |
-| **commandpanels.command.open.other** | 允许为其他玩家打开面板。          | 管理员  |
-| **commandpanels.command.reload**     | 允许重载插件。               | 管理员  |
+| ------------------------------------ | :-------------------- | :--: |
+| **commandpanels.command**            | 允许访问基础的`/pa`命令。       |  所有人 |
+| **commandpanels.command.help**       | 允许使用`/pa help`查看帮助。   |  所有人 |
+| **commandpanels.command.version**    | 允许插件插件的版本信息。          |  所有人 |
+| **commandpanels.command.data**       | 允许配置面板数据。             |  管理员 |
+| **commandpanels.command.generate**   | 允许使用面板生成命令。           |  管理员 |
+| **commandpanels.command.open**       | 允许使用`/pa open`命令打开面板。 |  管理员 |
+| **commandpanels.command.open.other** | 允许为其他玩家打开面板。          |  管理员 |
+| **commandpanels.command.reload**     | 允许重载插件。               |  管理员 |
 
-------
+---
 
 ## 实用链接
 
-- [**CommandPanels下载**](https://modrinth.com/plugin/commandpanels)
-- [**PlaceholderAPI下载**](https://www.spigotmc.org/resources/6245/)
+- [**CommandPanels 下载**](https://modrinth.com/plugin/commandpanels)
+- [**PlaceholderAPI 下载**](https://www.spigotmc.org/resources/6245/)
 
-------
+---
 
 首先前往快速上手页面，制作你的第一个面板吧！

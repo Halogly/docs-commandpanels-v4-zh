@@ -3,15 +3,15 @@ import TabItem from '@theme/TabItem';
 
 # 语言
 
-CommandPanels支持通过`lang.yml`文件来更改语言。你可以自定义并翻译插件发送的消息，包括错误、警告和信息。
+CommandPanels 支持通过 `lang.yml` 文件来更改语言。你可以自定义并翻译插件发送的消息，包括错误、警告和信息。
 
-除了错误、警告和系统信息外，插件在执行面板命令标签及其他功能时不会发送任何提示消息。这样用户就能自定义面板发送的消息（仅当你想要发送消息时）。
+除了错误、警告和系统信息外，插件在执行面板命令标签及其他功能时不会发送任何提示消息。这样用户就能自定义面板发送的消息 (仅当你想要发送消息时)。
 
------
+---
 
 ## 存放位置
 
-访问存放在**CommandPanels插件文件夹**里面的`lang.yml`文件，在`config.yml`旁边。
+访问存放在 **CommandPanels 插件文件夹**里面的 `lang.yml` 文件，在 `config.yml` 旁边。
 
 位置在这里：
 
@@ -22,12 +22,12 @@ CommandPanels支持通过`lang.yml`文件来更改语言。你可以自定义并
 ├── panels/
 ```
 
------
+---
 
 ## 中文配置
 
 <Tabs>
-<TabItem value="简体" label="简体（中国大陆）">
+<TabItem value="简体" label="简体(中国大陆)">
 
 ```yaml
 # 翻译：Halogly
@@ -74,7 +74,7 @@ data_missing_key_or_expression: "缺少键名或表达式。"
 data_unknown_action: "未知操作。"
 data_player_required: "你必须是一名玩家。"
 data_value: "值：{0}"
-data_set: "已将键 '{0}' 的值设置为 '{1}'（若不存在则创建）。"
+data_set: "已将键 '{0}' 的值设置为 '{1}'(若不存在则创建)。"
 data_overwrite: "已将键 '{0}' 的值覆盖为 '{1}'。"
 data_math: "已对键 '{1}' 执行数学运算 '{0}'。"
 data_delete: "已删除键 '{0}'。"
@@ -120,7 +120,7 @@ require_head_database: "请下载 HeadDatabase 插件以使用此功能！"
 ```
 
 </TabItem>
-<TabItem value="繁体（中国香港）" label="繁体（中国香港）">
+<TabItem value="繁体(中国香港)" label="繁体(中国香港)">
 
 ```yaml
 # 翻譯：Halogly，AI
@@ -167,7 +167,7 @@ data_missing_key_or_expression: "缺少鍵名或表達式。"
 data_unknown_action: "未知操作。"
 data_player_required: "你必須是一名玩家。"
 data_value: "值：{0}"
-data_set: "已將鍵 '{0}' 的值設定為 '{1}'（若不存在則建立）。"
+data_set: "已將鍵 '{0}' 的值設定為 '{1}'(若不存在則建立)。"
 data_overwrite: "已將鍵 '{0}' 的值覆蓋為 '{1}'。"
 data_math: "已對鍵 '{1}' 執行數學運算 '{0}'。"
 data_delete: "已刪除鍵 '{0}'。"
@@ -213,7 +213,7 @@ require_head_database: "請下載 HeadDatabase 插件以使用此功能！"
 ```
 
 </TabItem>
-<TabItem value="繁体（中国台湾）" label="繁体（中国台湾）">
+<TabItem value="繁体(中国台湾)" label="繁体(中国台湾)">
 
 ```yaml
 # 翻譯：Halogly，AI
@@ -260,7 +260,7 @@ data_missing_key_or_expression: "缺少鍵名稱或運算式。"
 data_unknown_action: "未知的操作。"
 data_player_required: "你必須是玩家。"
 data_value: "數值：{0}"
-data_set: "已將鍵 '{0}' 的數值設定為 '{1}'（若不存在則建立）。"
+data_set: "已將鍵 '{0}' 的數值設定為 '{1}'(若不存在則建立)。"
 data_overwrite: "已將鍵 '{0}' 的數值覆寫為 '{1}'。"
 data_math: "已對鍵 '{1}' 執行數學運算 '{0}'。"
 data_delete: "已刪除鍵 '{0}'。"
@@ -308,12 +308,12 @@ require_head_database: "請下載 HeadDatabase 插件才能使用此功能！"
 </TabItem>
 </Tabs>
 
------
+---
 
 ## 运作原理
 
-- 插件会读取`lang.yml`并使用你翻译的版本。
-- 你可以在CommandPanels官网的工具（tools）页面找到语言文件。
+- 插件会读取 `lang.yml` 并使用你翻译的版本。
+- 你可以在 CommandPanels 官网的工具 (tools) 页面找到语言文件。
 - 如果语言文件中缺少一些条目，这些条目会回退到默认的内置语言。
 
 :::tip

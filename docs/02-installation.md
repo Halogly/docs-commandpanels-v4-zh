@@ -1,14 +1,14 @@
 # 安装
 
-1. 将CommandPanels插件的`.jar`文件放进服务器的`plugins`文件夹。
-2. 启动你的Minecraft服务器，插件将自动生成配置文件。
-3. 首次运行后，打开`plugins/CommandPanels`文件夹，你会看到以下内容：
-    - `config.yml`：常规插件配置。
-    - `panels/`：这个文件夹包含你所有的面板配置文件。
-4. 你可以在`panels/`目录中创建子文件夹来分类管理面板文件，CommandPanels完全支持嵌套文件夹结构。
-5. 如果你删除了整个`panels/`文件夹并重载插件，插件会重新生成示例面板。
+1. 将 CommandPanels 插件的`.jar` 文件放进服务器的 `plugins` 文件夹。
+2. 启动你的 Minecraft 服务器，插件将自动生成配置文件。
+3. 首次运行后，打开 `plugins/CommandPanels` 文件夹，你会看到以下内容：
+   - `config.yml`：常规插件配置。
+   - `panels/`：这个文件夹包含你所有的面板配置文件。
+4. 你可以在 `panels/` 目录中创建子文件夹来分类管理面板文件，CommandPanels 完全支持嵌套文件夹结构。
+5. 如果你删除了整个 `panels/` 文件夹并重载插件，插件会重新生成示例面板。
 
-------
+---
 
 :::tip
 
